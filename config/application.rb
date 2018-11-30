@@ -30,6 +30,10 @@ module EvilChat
     # Don't generate system test files.
     config.generators.system_tests = nil
 
+    config.autoload_paths << Rails.root.join('app', 'domain')
+    config.autoload_paths << Rails.root.join('app', 'services')
+    config.autoload_paths << Rails.root.join('app', 'facades')
+
     config.generators do |g|
       g.test_framework  false
       g.stylesheets     false
