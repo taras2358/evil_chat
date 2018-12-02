@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import ProductList from 'components/store/product/list.jsx'
+
 export default class StoreIndex extends React.Component {
   static propTypes = {};
 
@@ -9,7 +11,7 @@ export default class StoreIndex extends React.Component {
 
     // How to set initial state in ES6 class syntax
     // https://reactjs.org/docs/state-and-lifecycle.html#adding-local-state-to-a-class
-    // this.state = { name: this.props.name };
+    this.state = { products: this.props.products };
   }
 
   // updateName = (name) => {
@@ -17,12 +19,16 @@ export default class StoreIndex extends React.Component {
   // };
 
   render() {
+    let productsCount = this.state.products.length
+    let products = this.state.products;
     return (
       <div>
         <h3>
           Ecommerce Landing Page
         </h3>
         <hr />
+        <ProductList products={products}/>
+        <div>Products count: {productsCount}</div>
       </div>
     );
   }

@@ -21,7 +21,7 @@
       "eslint",
       "git add"
     ],
-    "frontend/**/*.js": [
+    "frontend/**/**/*.jsx": [
       "prettier --write",
       "eslint",
       "git add"
