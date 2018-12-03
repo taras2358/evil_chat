@@ -33,6 +33,7 @@ module EvilChat
     config.autoload_paths << Rails.root.join('app', 'domain')
     config.autoload_paths << Rails.root.join('app', 'services')
     config.autoload_paths << Rails.root.join('app', 'facades')
+    config.autoload_paths << Rails.root.join('app', 'forms')
 
     config.generators do |g|
       g.test_framework  false
