@@ -50,3 +50,5 @@ gem 'mini_racer', platforms: :ruby
 gem 'warden'
 
 gem 'bcrypt-ruby'
+
+# gem 'js-routes'
