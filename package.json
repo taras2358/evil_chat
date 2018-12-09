@@ -6,6 +6,7 @@
     "actioncable": "^5.2.1",
     "babel-polyfill": "^6.26.0",
     "babel-preset-react": "^6.24.1",
+    "eslint-plugin-react": "^7.11.1",
     "normalize.css": "^7.0.0",
     "postcss-nested": "^4.1.0",
     "prop-types": "^15.6.2",
@@ -29,6 +30,9 @@
       "stylelint --fix",
       "git add"
     ]
+  },
+  "scripts": {
+    "lint-staged": "$(yarn bin)/lint-staged"
   },
   "pre-commit": [
     "lint-staged"

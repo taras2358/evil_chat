@@ -3,12 +3,12 @@ class User::RegistrationForm
   include ActiveModel::SecurePassword
 
   def initialize(params)
-    params.slice(:email, :password, :password_confirmation)
+    params = params.slice(:email, :password, :password_confirmation)
+    super
   end
 
   attr_accessor(
     :email,
-    :password,
     :password_confirmation,
     :password_digest
   )

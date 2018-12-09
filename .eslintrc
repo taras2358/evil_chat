@@ -1,5 +1,5 @@
 {
-  "extends": ["eslint-config-airbnb-base", "prettier"],
+  "extends": ["eslint-config-airbnb-base", "prettier", "plugin:react/recommended"],
 
   "plugins": ["prettier"],
 
@@ -14,6 +14,9 @@
   "parser": "babel-eslint",
 
   "settings": {
+    "react": {
+      "version": "16.6.3"
+    },
     "import/resolver": {
       "webpack": {
         "config": {

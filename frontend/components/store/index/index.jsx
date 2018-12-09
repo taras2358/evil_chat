@@ -1,10 +1,12 @@
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from "prop-types";
+import React from "react";
 
-import ProductList from 'components/store/product/list.jsx'
+import ProductList from "components/store/product/list.jsx";
 
 export default class StoreIndex extends React.Component {
-  static propTypes = {};
+  static propTypes = {
+    products: PropTypes.array
+  };
 
   constructor(props) {
     super(props);
@@ -15,22 +17,18 @@ export default class StoreIndex extends React.Component {
   }
 
   // updateName = (name) => {
-    // this.setState({ name });
+  // this.setState({ name });
   // };
-
   render() {
-    let productsCount = this.state.products.length
-    let products = this.state.products;
+    const productsCount = this.state.products.length;
+    const { products } = this.state.products;
     return (
       <div>
-        <h3>
-          Ecommerce Landing Page
-        </h3>
+        <h3>Ecommerce Landing Page</h3>
         <hr />
-        <ProductList products={products}/>
+        <ProductList products={products} />
         <div>Products count: {productsCount}</div>
       </div>
     );
   }
 }
-

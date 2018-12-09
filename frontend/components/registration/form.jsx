@@ -1,5 +1,7 @@
 // import PropTypes from "prop-types";
 import React from "react";
+import HttpClient from "utils/http_client";
+import "./form.scss";
 
 export default class RegistrationForm extends React.Component {
   static propTypes = {};
@@ -10,7 +12,7 @@ export default class RegistrationForm extends React.Component {
       email: "",
       password: "",
       password_confirmation: "",
-      errors: {}
+      errors: { email: [], password: [], password_confirmation: [] }
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -18,31 +20,20 @@ export default class RegistrationForm extends React.Component {
   }
 
   handleChange(event) {
-    const inputName = event.target.name;
-    const value = event.target.value;
+    const { name: inputName, value } = event.target;
+    // const inputName = event.target.name;
+    // const value = event.target.value;
     this.setState({ [inputName]: value });
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    const body = JSON.stringify(this.state);
+    const requestBody = JSON.stringify(this.state);
+    const client = new HttpClient();
 
-    const request = async () => {
-      const settings = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "X-CSRF-Token": ReactOnRails.authenticityToken()
-        },
-        body: body
-      };
-      const response = await fetch("/registrations", settings);
-      const json = await response.json();
-      return json;
-    };
+    const request = client.post("/registrations", requestBody);
 
-    request().then(body => {
-      console.log(body);
+    request.then(body => {
       this.setState({ errors: body.errors });
     });
   }
@@ -60,30 +51,28 @@ export default class RegistrationForm extends React.Component {
               onChange={this.handleChange}
             />
             <br />
-            <span className="field-error">{this.state.errors.email}</span>
+            <span className="field-error">{this.state.errors.email[0]}</span>
           </div>
           <div>
             <input
-              type="text"
+              type="password"
               name="password"
               value={this.state.password}
               onChange={this.handleChange}
             />
             <br />
-            <span className="field-error">
-              {this.state.errors.password ? this.state.errors.password[0] : ""}
-            </span>
+            <span className="field-error">{this.state.errors.password[0]}</span>
           </div>
           <div>
             <input
-              type="text"
+              type="password"
               name="password_confirmation"
               value={this.state.password_confirmation}
               onChange={this.handleChange}
             />
             <br />
             <span className="field-error">
-              {this.state.errors.password_confirmation}
+              {this.state.errors.password_confirmation[0]}
             </span>
           </div>
         </label>
