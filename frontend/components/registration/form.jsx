@@ -53,6 +53,8 @@ export default class RegistrationForm extends React.Component {
             <br />
             <span className="field-error">{this.state.errors.email[0]}</span>
           </div>
+        </label>
+        <label>
           <div>
             <input
               type="password"
@@ -63,6 +65,8 @@ export default class RegistrationForm extends React.Component {
             <br />
             <span className="field-error">{this.state.errors.password[0]}</span>
           </div>
+        </label>
+        <label>
           <div>
             <input
               type="password"
