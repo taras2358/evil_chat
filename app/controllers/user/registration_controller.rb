@@ -7,7 +7,7 @@ class User::RegistrationController < ApplicationController
     result = sign_up.perform
 
     if result.success?
-      head :ok
+      head :created
     else
       render json: { errors: result.object.errors.messages }, status: :bad_request
     end
