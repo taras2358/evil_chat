@@ -31,6 +31,6 @@ class User::SignUp < BaseOperation
   end
 
   def create_user
-    @user = User::Repository.create(email: @form.email, password: @form.password)
+    @user = User::Repository.create(email: @form.email, password: @form.password_digest)
   end
 end

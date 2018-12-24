@@ -13,8 +13,16 @@ class User::Repository
         r.email = email
         r.password = password
       end
+      user.save
       map_record(user)
     end
+
+    def find_by_email(email)
+      record = User.find_by_email(email)
+      map_record(record) if record
+    end
+
+    private
 
     def map_record(record)
       User::Entity.new(record.attributes.symbolize_keys)

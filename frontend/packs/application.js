@@ -14,9 +14,11 @@ import ReactOnRails from "react-on-rails";
 import HelloWorld from "components/hello_world/hello_world.jsx";
 import StoreIndex from "components/store/index/index.jsx";
 import RegistrationForm from "components/registration/form.jsx";
+import LoginForm from "components/login/form.jsx";
 
 ReactOnRails.register({
   HelloWorld,
   StoreIndex,
-  RegistrationForm
+  RegistrationForm,
+  LoginForm
 });

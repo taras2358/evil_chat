@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   post "/login", to: "auth#create"
 
   resources :registrations, only: [:new, :create], controller: 'user/registration'
+  resources :sessions, only: [:new, :create], controller: 'user/sessions'
 end

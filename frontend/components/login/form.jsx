@@ -5,15 +5,12 @@ import Input from "components/input/index.jsx";
 import "./form.scss";
 // import PropTypes from "prop-types";
 
-export default class RegistrationForm extends React.Component {
-  static propTypes = {};
-
+export default class LoginForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       email: "",
       password: "",
-      password_confirmation: "",
       errors: {}
     };
 
@@ -28,13 +25,19 @@ export default class RegistrationForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const requestBody = JSON.stringify(this.state);
+    const requestBody = {
+      email: this.state.email,
+      password: this.state.password
+    };
     const client = HttpClient;
-    const request = client.post("/registrations", requestBody);
+    const request = client.post(
+      Routes.login_path(),
+      JSON.stringify(requestBody)
+    );
 
     request
       .then(() => {
-        window.location.href = Routes.new_login_path();
+        window.location.href = "/";
       })
       .catch(body => {
         this.setState({ errors: body.errors });
@@ -59,14 +62,6 @@ export default class RegistrationForm extends React.Component {
           value={this.state.password}
           onChange={this.handleChange}
           errors={this.state.errors.password}
-        />
-        <Input
-          label="Password confirmation"
-          type="password"
-          name="password_confirmation"
-          value={this.state.password_confirmation}
-          onChange={this.handleChange}
-          errors={this.state.errors.password_confirmation}
         />
         <input type="submit" value="Submit" />
       </form>
