@@ -3,7 +3,7 @@ class User::SessionsController < ApplicationController
   end
 
   def create
-    login = User::Login.new(params[:email], params[:password])
+    login = User::Login.new(params[:email], params[:password], request.env['warden'])
     result = login.perform
 
     if result.success?

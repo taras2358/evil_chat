@@ -22,6 +22,11 @@ class User::Repository
       map_record(record) if record
     end
 
+    def find(id)
+      record = User.find_by(id: id)
+      map_record(record) if record
+    end
+
     private
 
     def map_record(record)

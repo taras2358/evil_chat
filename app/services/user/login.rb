@@ -1,14 +1,15 @@
 require 'user'
 
 class User::Login < BaseOperation
-  def self.call(email, password)
+  def self.call(email, password, warden)
     new(email, password).perform
   end
 
-  attr_reader :email, :password, :user, :form
-  def initialize(email, password)
+  attr_reader :email, :password, :user, :form, :warden
+  def initialize(email, password, warden)
     @email = email
     @password = password
+    @warden = warden
   end
 
   def perform
@@ -55,7 +56,7 @@ class User::Login < BaseOperation
 
   def authenticate
     binding.pry
-    BCrypt::Password.new(user.password).is_password?(password) && self
+    warden.authenticate
   end
 end
 
